@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>web storage</title>
+</head>
+<body>
+  <h1>Web storage示例</h1>
+  <p id="msg"></p>
+  <input type="text" id="input">
+  <input type="button" value="保存数据" onclick="saveStorage('input')">
+  <input type="button" value="读取数据" onclick="loadStorage('msg')">
+  <script>
+    // 保存数据
+    function saveStorage(id){
+      let target = document.getElementById(id);
+      let str=target.value;
+      localStorage.setItem('message',str);
+    }
+    
+    // 读取数据
+    function loadStorage(id){
+      let target = document.getElementById(id);
+      let msg=localStorage.getItem('message');
+      target.innerHTML=msg;
+    }
+  </script>
+</body>
+</html>
