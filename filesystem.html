@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FileSystem</title>
+
+  <script>
+    window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+    let fs = null;
+    if (window.requestFileSystem) {
+      initFS();
+    }
+
+    function initFS() {
+      // 请求文件系统
+      window.requestFileSystem(window.TEMPORARY, 1024 * 1024, function (fs) {
+        // 创建文件
+        fs.root.getFile('newfile.txt',{create:true},function(fileEntry){
+          //写文件 
+          fileEntry.createWriter(
+            function(fileWriter){
+              fileWriter.onwriteend=function(e){
+                alert('写文件操作结束');
+              };
+              let blob=new Blob(['测试写文件']);
+              fileWriter.write(blob);
+            }
+          );
+          // 读取文件
+          fileEntry.file(function(file){
+            let reader=new FileReader();
+            reader.onloadend=function(e){
+              console.log(this.result);
+            };
+            reader.readAsText(file);
+          });
+        });
+      }, errorhandler);
+    }
+    function errorhandler(e) {
+      alert('error');
+    }
+  </script>
+</head>
+
+<body>
+
+  <output id="result"></output>
+</body>
+
+</html>
