@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    let worker;
+    function window_onload(){
+      worker=new SharedWorker('shareWorker.js');
+      worker.port.onmessage=function(e){
+        document.getElementById('text').value=e.data;
+      };
+      worker.port.start();
+    }
+    function sendData(){
+      worker.port.postMessage(document.getElementById('text').value);
+    }
+    function getData(){
+      worker.port.postMessage('get');
+    }
+  </script>
+</head>
+<body onload="window_onload()">
+  <input type="text" id="text" />
+  <button onclick="sendData()">提交数据</button>
+  <button onclick="getData()">获取数据</button>  
+</body>
+</html>
