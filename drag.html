@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function init(){
+
+      let source=document.getElementById('dragme');
+      let dest=document.getElementById('text');
+
+      source.addEventListener('dragstart',function(event){
+        let dt=event.dataTransfer;
+        dt.effectAllowed='all';
+        dt.setData('text/plain','你好');
+      },false);
+
+      dest.addEventListener('dragover',function(event){
+        let dt=event.dataTransfer;
+        dt.dropEffect='copy';
+        event.preventDefault();
+      },false);
+
+      dest.addEventListener('dragend',function(event){
+        event.preventDefault();
+      },false);
+
+      dest.addEventListener('drop',function(event){
+        let dt=event.dataTransfer;
+        let text=dt.getData('text/uri-list');
+        console.log(text);
+        dest.textContent+=text;
+        event.preventDefault();
+        event.stopPropagation();
+      },false);
+    }
+    
+    document.ondragover=function(e){e.preventDefault()};
+    document.ondrop=function(e){e.preventDefault()};
+  </script>
+</head>
+<body onload="init()">
+  <div id="dragme" draggable="true" style="width:200px;border:1px solid gray;">
+    请拖放
+  </div>
+  <div id="text"  style="width: 200px;height: 200px;border:1px solid gray;"></div>
+</body>
+</html>
