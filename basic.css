@@ -1,0 +1,70 @@
+/*
+1.<div style="color:#f00;font-size:18px;">内联</div>
+2.<style>
+ 内部样式表
+</style>
+3.外部
+<link type="text/css" href="index.css" rel="stylesheet" />
+*/
+
+/*  
+在伪元素中定义counter-increment:变量 增量 和使用counter(变量)计数器变量
+在伪元素的父元素上重置counter-reset计数器
+可用counters(变量)遍历使用变量多重使用的情况
+*/
+
+#counter {
+  counter-reset: test;
+}
+/* attr */
+#counter:before  {
+  content:attr(id);
+}
+#counter  div {
+  counter-reset: testItem;
+}
+#counter  div:before {
+  counter-increment: test;
+  content:counter(test)'、';
+}
+#counter span {
+  display: block;
+  margin:  0 0 0 2em;
+}
+#counter span:before {
+  counter-increment: testItem;
+  content:counter(test)'.'counter(testItem)'、';
+}
+/* 渐变 */
+#gradient .grd {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 0 20px;
+  border:1px solid #333;
+}
+
+/*
+linear-gradient(角度,颜色 起始位置,颜色 起始位置...)
+ */
+#gradient div:nth-child(1){
+  background-image: linear-gradient(-45deg,#000, #f00 50%, #090);
+}
+
+/* 
+重复频率由最后一个颜色停止位置定义，其它同上
+ */
+#gradient div:nth-child(2){
+  background-image:  repeating-linear-gradient(#f00, #0f0 10%, #00f 20%);
+}
+
+/* 
+radial-gradient(类型或长度 at 圆心位置,颜色 起始位置,颜色 起始位置...)
+类型或长度定义了渐变作用的范围及类型，如里两个半径值不同则是椭圆
+ */
+#gradient div:nth-child(3){
+  background-image: radial-gradient(50px 100px at top right, #f00, #ff0, #080);
+}
+#gradient div:nth-child(4){
+  background-image: repeating-radial-gradient(ellipse closest-corner at 20px 50px, #f00, #ff0 10%, #080 20%, #ff0 30%, #f00 40%);
+}
