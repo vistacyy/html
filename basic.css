@@ -13,6 +13,15 @@
 可用counters(变量)遍历使用变量多重使用的情况
 */
 
+/*
+优先级:
+最高级 !important
+行内 1000
+ID 100
+类、伪类、属性 10
+元素、伪元素 1
+*/
+
 #counter {
   counter-reset: test;
 }
@@ -67,4 +76,189 @@ radial-gradient(类型或长度 at 圆心位置,颜色 起始位置,颜色 起�
 }
 #gradient div:nth-child(4){
   background-image: repeating-radial-gradient(ellipse closest-corner at 20px 50px, #f00, #ff0 10%, #080 20%, #ff0 30%, #f00 40%);
+}
+
+/* 关系选择符 */
+#selectors p {
+  color:blue;
+}
+#selectors > p {
+ color:red;
+}
+/* 
+相邻选择符只会命中符合条件的那个毗邻的兄弟元素 
+这里只能命中span
+*/
+#selectors h3 + p {
+  font-size:30px;
+}
+/* 
+同一父级下元素后面的所有兄弟元素
+ */
+#selectors h3 ~ p {
+  color:green;
+}
+
+#selectors [title] {
+  color:initial;
+  font-size:initial;
+}
+#selectors [title="b"] {
+  color:blue;
+}
+/*
+属性值为一用空格分隔的字词列表,含一个值且相等
+*/
+#selectors [title~="a"] {
+  color:red;
+}
+/*
+具有att属性且属性值为以val开头的字符串
+*/
+#selectors [title^="a"] {
+  color:green;
+}
+/*
+具有att属性且属性值为以val开头的字符串
+*/
+#selectors [title^="a"] {
+  color:green;
+}
+/*
+具有att属性且属性值为以val结尾的字符串
+*/
+#selectors [title$="c"] {
+  color:blue;
+}
+/*
+具有att属性且属性值为包含val的字符串
+*/
+#selectors [title*="c"] {
+  color:blue;
+}
+/*
+具有att属性，其值是以val开头并用连接符"-"分隔的字符串的E元素；如果值仅为val，也将被选择
+*/
+#selectors [title|="a"] {
+  font-size: 24px;
+}
+/*
+伪类、伪对像选择符
+*/
+/*
+设置对象内的第一个字符的样式
+此伪对象仅作用于块对象。内联对象要使用该伪对象，必须先将其设置为块级对象。
+*/
+#pseudo p{
+  width:200px;
+  padding:5px 10px;
+  border:1px solid #ddd;
+  font:14px/1.5 simsun,serif,sans-serif;
+}
+#pseudo p:first-letter {
+  float:left;
+  font-size:40px;
+  font-weight:bold;
+  line-height:1;
+}
+/*
+设置对象内的第一行的样式
+此伪对象仅作用于块对象。内联对象要使用该伪对象，必须先将其设置为块级对象。
+*/
+#pseudo p:first-line {
+  color:#090;
+}
+/*
+设置在对象前/后（依据对象树的逻辑结构）发生的内容。用来和content属性一起使用，并且必须定义content属性
+*/
+/*#pseudo span:before{
+  content:"如果你的能看到这段文字，说明你的浏览器只支持E:before";
+}
+#pseudo span:after{
+  content:"如果你的能看到这段文字，说明你的浏览器只支持E:after";
+}*/
+/*
+设置对象文字占位符的样式
+Firefox是 ::[prefix]placeholder
+其他浏览器都是使用 ::[prefix]input-placeholder
+*/
+#pseudo input::-webkit-input-placeholder {
+	color: blue;
+}
+/*
+设置对象被选择时的样式。
+只能定义被选择时的background-color，color及text-shadow(IE11尚不支持定义该属性)。
+*/
+#pseudo  h1::selection{
+  background:#000;
+  color:#f00;
+}
+/*
+没有按照一致的书写顺序，不同的浏览器可能会有不同的表现
+可靠的顺序是：l(link)ov(visited)e h(hover)a(active)te
+*/
+#pseudo a {
+  text-decoration: none;
+}
+#pseudo a:link {
+  color:green;
+}
+#pseudo a:visited {
+  color:red;
+}
+#pseudo a:hover {
+  color:blue;
+}
+/*
+鼠标点击未释放
+*/
+#pseudo a:active {
+  font-size: 20px;
+}
+#pseudo input:focus {
+  outline:none;
+  border:1px solid #f60;
+}
+/*
+匹配不含有s选择符的元素E
+*/
+/*#pseudo :not(a) {
+  font-size:18px;
+}*/
+/*
+匹配E元素在文档的根元素。在HTML中，根元素永远是HTML
+*/
+/*html:root {
+  background-color: green;
+}*/
+/*
+E元素必须是某个元素的子元素，E的父元素最高是body
+*/
+#pseudo span:first-child {
+  color:blue;
+}
+#pseudo span:last-child {
+  color:red;
+}
+#pseudo span:only-child {
+  color:green;
+}
+/*
+匹配父元素的第n个子元素E，假设该子元素不是E
+该选择符允许使用一个乘法因子(n)来作为换算方式
+:nth-last-child用法同
+以下选择符会忽略父元素下的其他元素，只考虑同类元素
+:first-of-type
+:last-of-type
+:only-of-type
+:nth-of-type(n)
+:nth-last-of-type(n)
+*/
+#pseudo span:nth-child(2n+1) {
+  font-size:22px;
+  font-weight: bold;
+}
+#target:target {
+  font-size:24px;
+  color:blue;
 }
