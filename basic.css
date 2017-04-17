@@ -7,11 +7,13 @@
 <link type="text/css" href="index.css" rel="stylesheet" />
 */
 
+
 /*  
 在伪元素中定义counter-increment:变量 增量 和使用counter(变量)计数器变量
 在伪元素的父元素上重置counter-reset计数器
 可用counters(变量)遍历使用变量多重使用的情况
 */
+
 
 /*
 优先级:
@@ -22,227 +24,322 @@ ID 100
 元素、伪元素 1
 */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #counter {
   counter-reset: test;
 }
+
+
 /* attr */
-#counter:before  {
-  content:attr(id);
+
+#counter:before {
+  content: attr(id);
 }
-#counter  div {
+
+#counter div {
   counter-reset: testItem;
 }
-#counter  div:before {
+
+#counter div:before {
   counter-increment: test;
-  content:counter(test)'、';
+  content: counter(test)'、';
 }
+
 #counter span {
   display: block;
-  margin:  0 0 0 2em;
+  margin: 0 0 0 2em;
 }
+
 #counter span:before {
   counter-increment: testItem;
-  content:counter(test)'.'counter(testItem)'、';
+  content: counter(test)'.'counter(testItem)'、';
 }
+
+
 /* 渐变 */
+
 #gradient .grd {
   display: inline-block;
   width: 200px;
   height: 200px;
   margin: 0 20px;
-  border:1px solid #333;
+  border: 1px solid #333;
 }
+
 
 /*
 linear-gradient(角度,颜色 起始位置,颜色 起始位置...)
  */
-#gradient div:nth-child(1){
-  background-image: linear-gradient(-45deg,#000, #f00 50%, #090);
+
+#gradient div:nth-child(1) {
+  background-image: linear-gradient(-45deg, #000, #f00 50%, #090);
 }
+
 
 /* 
 重复频率由最后一个颜色停止位置定义，其它同上
  */
-#gradient div:nth-child(2){
-  background-image:  repeating-linear-gradient(#f00, #0f0 10%, #00f 20%);
+
+#gradient div:nth-child(2) {
+  background-image: repeating-linear-gradient(#f00, #0f0 10%, #00f 20%);
 }
+
 
 /* 
 radial-gradient(类型或长度 at 圆心位置,颜色 起始位置,颜色 起始位置...)
 类型或长度定义了渐变作用的范围及类型，如里两个半径值不同则是椭圆
  */
-#gradient div:nth-child(3){
+
+#gradient div:nth-child(3) {
   background-image: radial-gradient(50px 100px at top right, #f00, #ff0, #080);
 }
-#gradient div:nth-child(4){
+
+#gradient div:nth-child(4) {
   background-image: repeating-radial-gradient(ellipse closest-corner at 20px 50px, #f00, #ff0 10%, #080 20%, #ff0 30%, #f00 40%);
 }
 
+
 /* 关系选择符 */
+
 #selectors p {
-  color:blue;
+  color: blue;
 }
-#selectors > p {
- color:red;
+
+#selectors>p {
+  color: red;
 }
+
+
 /* 
 相邻选择符只会命中符合条件的那个毗邻的兄弟元素 
 这里只能命中span
 */
-#selectors h3 + p {
-  font-size:30px;
+
+#selectors h3+p {
+  font-size: 30px;
 }
+
+
 /* 
 同一父级下元素后面的所有兄弟元素
  */
-#selectors h3 ~ p {
-  color:green;
+
+#selectors h3~p {
+  color: green;
 }
 
 #selectors [title] {
-  color:initial;
-  font-size:initial;
+  color: initial;
+  font-size: initial;
 }
+
 #selectors [title="b"] {
-  color:blue;
+  color: blue;
 }
+
+
 /*
 属性值为一用空格分隔的字词列表,含一个值且相等
 */
+
 #selectors [title~="a"] {
-  color:red;
+  color: red;
 }
+
+
 /*
 具有att属性且属性值为以val开头的字符串
 */
+
 #selectors [title^="a"] {
-  color:green;
+  color: green;
 }
+
+
 /*
 具有att属性且属性值为以val开头的字符串
 */
+
 #selectors [title^="a"] {
-  color:green;
+  color: green;
 }
+
+
 /*
 具有att属性且属性值为以val结尾的字符串
 */
+
 #selectors [title$="c"] {
-  color:blue;
+  color: blue;
 }
+
+
 /*
 具有att属性且属性值为包含val的字符串
 */
+
 #selectors [title*="c"] {
-  color:blue;
+  color: blue;
 }
+
+
 /*
 具有att属性，其值是以val开头并用连接符"-"分隔的字符串的E元素；如果值仅为val，也将被选择
 */
+
 #selectors [title|="a"] {
   font-size: 24px;
 }
+
+
 /*
 伪类、伪对像选择符
 */
+
+
 /*
 设置对象内的第一个字符的样式
 此伪对象仅作用于块对象。内联对象要使用该伪对象，必须先将其设置为块级对象。
 */
-#pseudo p{
-  width:200px;
-  padding:5px 10px;
-  border:1px solid #ddd;
-  font:14px/1.5 simsun,serif,sans-serif;
+
+#pseudo p {
+  width: 200px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  font: 14px/1.5 simsun, serif, sans-serif;
 }
+
 #pseudo p:first-letter {
-  float:left;
-  font-size:40px;
-  font-weight:bold;
-  line-height:1;
+  float: left;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1;
 }
+
+
 /*
 设置对象内的第一行的样式
 此伪对象仅作用于块对象。内联对象要使用该伪对象，必须先将其设置为块级对象。
 */
+
 #pseudo p:first-line {
-  color:#090;
+  color: #090;
 }
+
+
 /*
 设置在对象前/后（依据对象树的逻辑结构）发生的内容。用来和content属性一起使用，并且必须定义content属性
 */
+
+
 /*#pseudo span:before{
   content:"如果你的能看到这段文字，说明你的浏览器只支持E:before";
 }
 #pseudo span:after{
   content:"如果你的能看到这段文字，说明你的浏览器只支持E:after";
 }*/
+
+
 /*
 设置对象文字占位符的样式
 Firefox是 ::[prefix]placeholder
 其他浏览器都是使用 ::[prefix]input-placeholder
 */
+
 #pseudo input::-webkit-input-placeholder {
-	color: blue;
+  color: blue;
 }
+
+
 /*
 设置对象被选择时的样式。
 只能定义被选择时的background-color，color及text-shadow(IE11尚不支持定义该属性)。
 */
-#pseudo  h1::selection{
-  background:#000;
-  color:#f00;
+
+#pseudo h1::selection {
+  background: #000;
+  color: #f00;
 }
+
+
 /*
 没有按照一致的书写顺序，不同的浏览器可能会有不同的表现
 可靠的顺序是：l(link)ov(visited)e h(hover)a(active)te
 */
+
 #pseudo a {
   text-decoration: none;
 }
+
 #pseudo a:link {
-  color:green;
+  color: green;
 }
+
 #pseudo a:visited {
-  color:red;
+  color: red;
 }
+
 #pseudo a:hover {
-  color:blue;
+  color: blue;
 }
+
+
 /*
 鼠标点击未释放
 */
+
 #pseudo a:active {
   font-size: 20px;
 }
+
 #pseudo input:focus {
-  outline:none;
-  border:1px solid #f60;
+  outline: none;
+  border: 1px solid #f60;
 }
+
+
 /*
 匹配不含有s选择符的元素E
 */
+
+
 /*#pseudo :not(a) {
   font-size:18px;
 }*/
+
+
 /*
 匹配E元素在文档的根元素。在HTML中，根元素永远是HTML
 */
+
+
 /*html:root {
   background-color: green;
 }*/
+
+
 /*
 E元素必须是某个元素的子元素，E的父元素最高是body
 */
+
 #pseudo span:first-child {
-  color:blue;
+  color: blue;
 }
+
 #pseudo span:last-child {
-  color:red;
+  color: red;
 }
+
 #pseudo span:only-child {
-  color:green;
+  color: green;
 }
+
+
 /*
 匹配父元素的第n个子元素E，假设该子元素不是E
 该选择符允许使用一个乘法因子(n)来作为换算方式
@@ -254,11 +351,258 @@ E元素必须是某个元素的子元素，E的父元素最高是body
 :nth-of-type(n)
 :nth-last-of-type(n)
 */
+
 #pseudo span:nth-child(2n+1) {
-  font-size:22px;
+  font-size: 22px;
   font-weight: bold;
 }
+
 #target:target {
-  font-size:24px;
-  color:blue;
+  font-size: 24px;
+  color: blue;
+}
+
+
+/*
+inset? && <length>{2,4} && <color>?
+inset：向内
+<length>{2,4}：水平偏移 垂直偏移 模糊值 外延值
+*/
+
+#border1 {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  box-shadow: inset 0 0 5px 3px rgba(255, 0, 0, .6), inset 0 0 5px 6px rgba(0, 182, 0, .6), inset 0 0 5px 10px rgba(255, 255, 0, .6);
+}
+
+
+/*
+把一张图分成9块，分别对应边角和中心9个部分
+必存在border-style不为none
+border-image-width:为显示宽度，会忽略border-width值，但不改变原盒子大小
+*/
+
+#border2 {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  border-image-source: url(img/border.png);
+  border-image-slice: 27 fill;
+  border-image-width: 27px;
+  /*border-image-outset: 10px;*/
+  border-image-repeat: repeat;
+}
+
+#background {
+  width: 500px;
+  height: 500px;
+  border: 20px solid #ff0;
+  padding: 20px;
+  background-image: url(img/img.jpg);
+  background-repeat: repeat;
+  background-attachment: scroll;
+  /*background-position: 10px 20px;*/
+  background-size: 160px 210px;
+  background-origin: content-box;
+  background-clip: padding-box;
+  background-color: #f00;
+}
+
+#text {
+  /*<' font-size '> 和 <' font-family '> 是不可忽略的*/
+  font: 28px 黑体, 宋体;
+  text-transform: capitalize;
+  white-space: nowrap;
+  /*换行*/
+  word-wrap: break-word;
+  /*断字*/
+  word-spacing: -20px;
+  /*单词间距,有空格才有效*/
+  letter-spacing: 5px;
+  /*字间距*/
+}
+
+#text span {
+  font-size: 14px;
+  vertical-align: 25%;
+  /*line color style*/
+  text-decoration: underline #f00 solid;
+}
+
+#text strong {
+  font-size: 35px;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 1), 1px 1px 2px rgba(0, 85, 0, .8);
+}
+
+#text p {
+  width: 100px;
+  height: 100px;
+  white-space: normal;
+  font-size: 16px;
+  text-decoration: none;
+  /*direction: rtl;
+  unicode-bidi:bidi-override;*/
+  writing-mode: vertical-rl;
+}
+
+#interface p {
+  white-space: nowrap;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 依赖上面三个属性实现文字省略号显示 */
+  outline: 2px solid #f00;
+  zoom: 2;
+  /* 缩放 */
+  box-sizing: border-box;
+  resize: both;
+  /* 可调整大小 */
+  user-select: none;
+  /*无法选择*/
+  pointer-events: none;
+  /*鼠标无法点击*/
+}
+
+#columns {
+  columns: 200px 3;
+  column-gap: 10px;
+  column-rule: 1px solid #0f0;
+}
+
+#columns h3 {
+  column-span: all;
+  text-align: center;
+}
+
+#columns p {
+  text-indent: 2em;
+}
+
+#transform {
+  margin-left: 200px;
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #333;
+}
+
+#transform p {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #999;
+  /*transform-origin: left bottom;*/
+  /*transform: translate(10px, 10px);*/
+  /*transform: rotate(45deg);*/
+  /*transform: scale(0.5, 0.5);*/
+  /*
+    x轴：正值逆时针，负值顺时针
+    y轴：正值顺时针，负值逆时针  
+  */
+  /*transform: skew(30deg, -30deg);*/
+}
+
+#cube {
+  width: 200px;
+  height: 200px;
+  margin: 50px auto;
+  border: 1px solid #000;
+  perspective: 10px;
+  transform-style: preserve-3d;
+}
+
+
+/*
+rotatex:正值向上 负值向下
+rotatey：正值向右 负值向左
+rotatez：正值顺时针 负值逆时针
+*/
+
+#cube div {
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  transform-style: preserve-3d;
+  /*transition: all 1s ease-in 1s;*/
+}
+
+#cube div:hover {
+  transform: rotatex(45deg);
+  /*transform: rotatey(45deg);*/
+  /*transform: rotatez(-45deg);*/
+}
+
+#cubeTest {
+  position: relative;
+  font-size: 80px;
+  width: 2em;
+  margin: 1.5em auto;
+  transform-style: preserve-3d;
+  transform: rotatex(-30deg) rotatey(-30deg);
+}
+
+#cubeTest div {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background: rgba(0, 0, 0, .1);
+  border: 1px solid #999;
+  color: white;
+  text-align: center;
+  line-height: 2em;
+  /*backface-visibility: hidden;*/
+}
+
+#cubeTest .front {
+  transform: translateZ(1em);
+}
+
+#cubeTest .back {
+  transform: rotateY(-180deg) translateZ(1em);
+}
+
+#cubeTest .top {
+  transform: rotateX(90deg) translateZ(1em);
+}
+
+#cubeTest .right {
+  transform: rotateY(90deg) translateZ(1em);
+}
+
+#cubeTest .left {
+  transform: rotateY(-90deg) translateZ(1em);
+}
+
+#cubeTest .bottom {
+  transform: rotateX(-90deg) translateZ(1em);
+}
+
+#animation {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #333;
+  position: relative;
+}
+
+#animation p {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #090;
+  animation: move 5s ease-in forwards;
+}
+
+@keyframes move {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 200px;
+  }
+  100% {
+    top: 50px;
+  }
 }
