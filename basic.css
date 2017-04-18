@@ -30,6 +30,11 @@ ID 100
   box-sizing: border-box;
 }
 
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+
 #counter {
   counter-reset: test;
 }

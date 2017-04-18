@@ -95,7 +95,7 @@
   </table>
 
   <!-- 有序列表 -->
-  <ol type="A">
+  <ol type="A" start="3">
     <li>有序列表1</li>
     <li>有序列表2</li>
     <li>有序列表3</li>
@@ -145,6 +145,23 @@
     </fieldset>
   </form>
 
+  <figure>
+    <img src="img/usemap.jpg" alt="image">
+    <figcaption>图片标题</figcaption>
+  </figure>
+
+  <details>
+    <summary style="cursor:pointer;">精武风云</summary>
+    <p>精武风云影片简介</p>
+  </details>
+
+  <mark>mark</mark>
+
+  <progress value="2" max="10"></progress>
+
+  <p>得分
+    <meter value="51" min="0" max="100" low="40" high="90" optimum="100">A+</meter>
+  </p>
   <!-- 视频 -->
   <video width="320" height="240" controls>
     <source src="media/movie.mp4" type="video/mp4">
@@ -155,9 +172,9 @@
   <input type="text" list="browsers">
   <datalist id="browsers">
     <option value="IE">
-      <option value="Firefox">
-        <option value="Chrome">
-          <option value="Opera">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
   </datalist>
 
   <img src="img/lamp.jpg" hidden id="lamp">
