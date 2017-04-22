@@ -1,5 +1,5 @@
 # New start
-tiem 2017/03/26
+date 2017/03/26
 
  * use git
  * basic html
