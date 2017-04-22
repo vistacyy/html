@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
-    function showObject(obj,k){
-      if(!obj) return;
-      for(let i in obj){
-        if(typeof(obj[i])!='object' || obj[i]==null){
-          for(let j=0;j<k;j++){
-            document.write('&nbsp;&nbsp;&nbsp;&nbsp;');
-          }
-          document.write(i+' : '+obj[i]+'<br/>');
-        }else{
-          document.write(i+' : <br/>');
-          showObject(obj[i],k+1);
-        }
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showMap, handleError, {
+          enableHighAccuracy: true,
+          maximumAge: 1000
+        });
       }
     }
-    function getLocation(){
-      if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showMap,handleError,
-          {enableHighAccuracy:true,maximumAge:1000});
-      }
+
+    function showMap(position) {
+      console.log(position);
     }
-    function handleError(error){
-      switch(error.code){
+
+    function handleError(error) {
+      switch (error.code) {
         case 1:
           alert('位置服务被拒绝.');
           break;
@@ -42,14 +36,13 @@
           break;
       }
     }
-    function showMap(position){
-      // showObject(position,0);
-      console.log(position);
-    }
+
     getLocation();
   </script>
 </head>
+
 <body>
   position
 </body>
+
 </html>

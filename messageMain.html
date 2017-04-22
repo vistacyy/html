@@ -14,12 +14,12 @@
   </div>
 
   <script type="text/javascript">
-    window.onload = function () {
+    window.onload = function() {
       window.frames[0].postMessage('getcolor', 'http://www.html.com');
     }
 
-    window.addEventListener('message', function (e) {
-      console.log('main',e);
+    window.addEventListener('message', function(e) {
+      console.log('main', e);
       var color = e.data;
       document.getElementById('color').style.backgroundColor = color;
     }, false);

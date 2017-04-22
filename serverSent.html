@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
-    if(typeof(EventSource) !=='undefined'){
-      let source=new EventSource('serverSent.php');
-      source.onmessage=function(event){
+    if (typeof(EventSource) !== 'undefined') {
+      let source = new EventSource('serverSent.php');
+      source.addEventListener('test', function(event) {
         console.log(event);
-        document.getElementById('result').innerHTML+=event.data+'<br />';
-      };
+        document.getElementById('result').innerHTML += event.data + '<br />';
+      }, false);
     }
   </script>
 </head>
+
 <body>
   <div id="result"></div>
 </body>
+
 </html>
