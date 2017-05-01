@@ -7,11 +7,17 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
+    // 跨域：
+    // 1.同窗口iframe下，设置共同的window.domain
+    // 2.同窗口不同页面共用window.name
+    // 3.JSONP
+    // 4.服务器修改消息头Access-Control-Allow-Origin
     function send() {
+      // 基本
       let form = document.getElementById('form');
       let xhr = new XMLHttpRequest();
       let formData = new FormData(form);
-      xhr.open('POST', 'xhr.php', true);
+      xhr.open('POST', 'http://www.html.com/xhr.php', true);
       xhr.onload = function(e) {
         if (this.status == 200) {
           document.getElementById('result').innerHTML = this.response;
@@ -19,6 +25,38 @@
       };
       xhr.send(formData);
     }
+
+    // 同上，演示跨域
+    function send2() {
+      // 基本
+      let form = document.getElementById('form');
+      let xhr = new XMLHttpRequest();
+      let formData = new FormData(form);
+      xhr.open('POST', 'http://www.php.com/xhr.php', true);
+      xhr.onload = function(e) {
+        if (this.status == 200) {
+          document.getElementById('result').innerHTML = this.response;
+        }
+      };
+      xhr.send(formData);
+    }
+
+    // 用于JSONP跨域
+    function jsonp(response) {
+      console.log(response);
+    }
+
+    window.onload = function() {
+
+      // jsonp跨域
+      let cros1 = document.getElementById('form').cros1;
+      cros1.onclick = function() {
+        let script = document.createElement("script");
+        script.src = "http://www.php.com/xhrCros.php?callback=jsonp";
+        document.body.insertBefore(script, document.body.firstChild);
+      };
+
+    };
   </script>
 </head>
 
@@ -27,6 +65,9 @@
     姓名：<input type="text" name="name"> <br> 年龄：
     <input type="text" name="age"> <br>
     <input type="button" value="发送数据" onclick="send()">
+    <input type="button" value="Cros1" name="cros1">
+    <input type="button" value="Cros2" onclick="send2()">
+
   </form>
   <output id="result"></output>
 </body>
